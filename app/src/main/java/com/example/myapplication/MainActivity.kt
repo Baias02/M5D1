@@ -24,33 +24,28 @@ class MainActivity : AppCompatActivity(), Contract {
         with(binding) {
             incrementBtn.setOnClickListener {
                 presenter.increment()
-                if (resultTvt.text == "10") {
-                    Toast.makeText(this@MainActivity, "Поздравляем", Toast.LENGTH_LONG).show()
-                }
-                if (resultTvt.text == "15") {
-                    Toast.makeText(this@MainActivity, "Успех", Toast.LENGTH_LONG).show()
-                    resultTvt.setTextColor(Color.GREEN)
-                } else {
-                    resultTvt.setTextColor(Color.BLACK)
-                }
-                decrementBtn.setOnClickListener {
-                    presenter.decrement()
-                    if (resultTvt.text == "10") {
-                        Toast.makeText(this@MainActivity, "Поздравляем", Toast.LENGTH_LONG).show()
-                    }
-                    if (resultTvt.text == "15") {
-                        Toast.makeText(this@MainActivity, "Успех", Toast.LENGTH_LONG).show()
-                        resultTvt.setTextColor(Color.GREEN)
-                    } else {
-                        resultTvt.setTextColor(Color.BLACK)
-                    }
-                }
+            }
+            decrementBtn.setOnClickListener {
+                presenter.decrement()
             }
         }
     }
 
-    override fun updateText(count: Int) {
-        binding.resultTvt.text = count.toString()
+    override fun updateText(count: String) {
+        binding.resultTvt.text = count
+
+    }
+
+    override fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun textColor(color: Int) {
+        binding.resultTvt.setTextColor(color)
+    }
+
+    override fun textColor1() {
+        binding.resultTvt.setTextColor(Color.BLACK)
     }
 }
 
